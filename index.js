@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path')
+const BASE_URL =process.env.BASE_URL
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,7 +18,7 @@ app.get('*' , function(req,res){
 });
 
 
-app.post('/validate-credit-card', (req, res) => {
+app.post(`${BASE_URL}/validate-credit-card`, (req, res) => {
   const creditCardNumber = req.body.creditCardNumber.replace(/\s/g, '');
   const isValid = luhnAlgorithmValidation(creditCardNumber);
 
